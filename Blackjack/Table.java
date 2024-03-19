@@ -17,5 +17,9 @@ public class Table extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
+        GreenfootImage background = new GreenfootImage(600, 400);
+        background.setColor(new Color(0, 120, 40));
+        background.fill();
+        setBackground(background);
     }
 }
