@@ -18,12 +18,15 @@ public class Card extends Actor
         }
         else if (value == 11) {
             imgTitle = "CardJack.png";
+            value = 10;
         }
         else if (value == 12) {
             imgTitle = "CardQueen.png";
+            value = 10;
         }
         else if (value == 0) {
             imgTitle = "CardKing.png";
+            value = 10;
         }
         else {
             imgTitle = "Card" + value + ".png";
