@@ -30,20 +30,20 @@ public class Table extends World
         Card card1 = deck.draw(true);
         Card card2 = deck.draw(false);
         dealerHand = new Hand(80, 100);
+        addObject(dealerHand, 0,0);
         dealerHand.addCard(card1);
         dealerHand.addCard(card2);
-        addObject(dealerHand, 0,0);
         dealerHand.renderHand();
         System.out.println(dealerHand.getValue());
         
         Card card3 = deck.draw(true);
         Card card4 = deck.draw(true);
         playerHand = new Hand(80,300);
+        addObject(playerHand, 0,0);
         playerHand.addCard(card3);
         playerHand.addCard(card4);
-        addObject(playerHand, 0,0);
         playerHand.renderHand();
-        System.out.println(playerHand.getValue());        
+        System.out.println(playerHand.getValue());  
         
     }
 }

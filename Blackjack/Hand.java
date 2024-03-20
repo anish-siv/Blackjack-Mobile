@@ -24,7 +24,6 @@ public class Hand extends Actor
         int numAces = 0;
         for (Card card: cards) {
             String cardValue = card.getValue();
-            System.out.println("card value" + cardValue);
             if (card.isVisible()) { //Card must be revealed from dealer deck
                 if (cardValue.equals("A")) {
                     numAces++;
@@ -44,12 +43,12 @@ public class Hand extends Actor
                 value += 1;
             }
         }
-        System.out.println("Value: " + value);
         return value;
     }
     
     public void addCard(Card card) {
         cards.add(card);
+        this.renderHand();
     }
     
     public void renderHand() {

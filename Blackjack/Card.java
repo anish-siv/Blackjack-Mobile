@@ -47,7 +47,7 @@ public class Card extends Actor {
     }
 
     public void showCard() {
-        visible = true;
+        this.visible = true;
         this.setImage(imgTitle);
     }
 
