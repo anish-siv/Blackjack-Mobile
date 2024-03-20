@@ -1,9 +1,15 @@
 #BlueJ class context
 comment0.target=Card
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Card\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=cardNum
-comment1.target=Card(int)
+comment0.text=\n\ Write\ a\ description\ of\ class\ Card\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=cardNum\ visible
+comment1.target=Card(int,\ boolean)
 comment2.params=
-comment2.target=void\ act()
-comment2.text=\r\n\ Act\ -\ do\ whatever\ the\ Card\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
-numComments=3
+comment2.target=java.lang.String\ getValue()
+comment3.params=
+comment3.target=boolean\ isVisible()
+comment4.params=
+comment4.target=void\ showCard()
+comment5.params=
+comment5.target=void\ act()
+comment5.text=\n\ Act\ -\ do\ whatever\ the\ Card\ wants\ to\ do.\ This\ method\ is\ called\ whenever\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\n
+numComments=6
