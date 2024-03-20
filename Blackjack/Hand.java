@@ -58,6 +58,9 @@ public class Hand extends Actor
         }
     }
     
+    public void showCard(){
+        cards.get(1).showCard();
+    }
     
     /**
      * Act - do whatever the Hand wants to do. This method is called whenever
