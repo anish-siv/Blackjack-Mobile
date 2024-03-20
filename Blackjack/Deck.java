@@ -20,11 +20,9 @@ public class Deck extends Actor
         
     }
     
-    public Card draw() {
+    public Card draw(boolean visible) {
         index = Greenfoot.getRandomNumber(13) + 1;
-        
-        Card newCard = new Card(index);
-        getWorld().addObject(newCard, 100, 100);
+        Card newCard = new Card(index, visible);
         return newCard;
     }
 }
