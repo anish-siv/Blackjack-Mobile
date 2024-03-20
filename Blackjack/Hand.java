@@ -24,51 +24,14 @@ public class Hand extends Actor
         int numAces = 0;
         for (Card card: cards) {
             String cardValue = card.getValue();
+            System.out.println("card value" + cardValue);
             if (card.isVisible()) { //Card must be revealed from dealer deck
-                
-                switch (cardValue) {
-                    case "A": 
-
-                        numAces++; 
-                        break;
-                    case "J":
-                        value += 10;
-                        break;
-                    case "Q": 
-                        value += 10;
-                        break;
-                    case "K": 
-                        value += 10;
-                        break;
-                    case "1": 
-                        value += 1; 
-                        break;
-                    case "2": 
-                        value += 2; 
-                        break;
-                    case "3": 
-                        value += 3; 
-                        break;
-                    case "4": 
-                        value += 4; 
-                        break;
-                    case "5": 
-                        value += 5; 
-                        break;
-                    case "6": 
-                        value += 6; 
-                        break;
-                    case "7": 
-                        value += 7; 
-                        break;
-                    case "8": 
-                        value += 8; 
-                        break;
-                    case "9": 
-                        value += 9; 
-                        break;
-                    default: 
-                        break;
+                if (cardValue.equals("A")) {
+                    numAces++;
+                } else if (cardValue.equals("J") || cardValue.equals("Q") || cardValue.equals("K")) {
+                    value += 10;
+                } else {
+                    value += Integer.parseInt(cardValue);
                 }
             }
         }
@@ -81,7 +44,7 @@ public class Hand extends Actor
                 value += 1;
             }
         }
-        System.out.println(value);
+        System.out.println("Value: " + value);
         return value;
     }
     

@@ -13,23 +13,23 @@ public class Card extends Actor {
     boolean visible;
 
     Card(int cardNum, boolean visible) {
-        visible = visible;
-        value = cardNum % 13;
+        this.visible = visible;
+        this.value = cardNum % 13;
         if (value == 1) {
-            imgTitle = "CardAce.png";
-            faceValue = "A";
+            this.imgTitle = "CardAce.png";
+            this.faceValue = "A";
         } else if (value == 11) {
-            imgTitle = "CardJack.png";
-            faceValue = "J";
+            this.imgTitle = "CardJack.png";
+            this.faceValue = "J";
         } else if (value == 12) {
-            imgTitle = "CardQueen.png";
-            faceValue = "Q";
+            this.imgTitle = "CardQueen.png";
+            this.faceValue = "Q";
         } else if (value == 0) {
-            imgTitle = "CardKing.png";
-            faceValue = "K";
+            this.imgTitle = "CardKing.png";
+            this.faceValue = "K";
         } else {
-            imgTitle = "Card" + value + ".png";
-            faceValue = Integer.toString(value);
+            this.imgTitle = "Card" + value + ".png";
+            this.faceValue = Integer.toString(value);
         }
         if (visible) {
             this.setImage(imgTitle);
