@@ -15,5 +15,16 @@ public class Hit extends Button
     public void act()
     {
         // Add your action code here.
+        Table world = (Table) getWorld();
+        
+        if ( Greenfoot.mouseClicked(this) && !world.isGameOver() )
+        {
+            getAnotherCard();
+        }
+    }
+    private void getAnotherCard()
+    {
+        Table world = (Table) getWorld();
+        world.turnNewCard(true);
     }
 }
