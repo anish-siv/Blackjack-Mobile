@@ -46,6 +46,10 @@ public class Hand extends Actor
         return value;
     }
     
+    public void clear(){
+        cards.clear();
+    }
+    
     public void addCard(Card card) {
         cards.add(card);
         this.renderHand();

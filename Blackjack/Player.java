@@ -10,14 +10,12 @@ public class Player extends Actor {
     Hand hand;
     int x, y;
     Deck deck;
-    boolean turnOver;
 
     Player(int x, int y, Deck deck){
         this.x = x;
         this.y = y;
         hand = new Hand(x, y);
         this.deck = deck;
-        turnOver = false;
     }
 
     int handValue(){
@@ -25,23 +23,15 @@ public class Player extends Actor {
     }
 
     void setup(){
+        hand.clear();
         getWorld().addObject(hand, x, y);
-        draw(true);
+        draw();
     }
 
-    void draw(boolean visible){
-        hand.addCard(deck.draw(visible));
+    void draw(){
+        hand.addCard(deck.draw(true));
     }
 
-    // Method to check if the player's turn is over
-    public boolean isTurnOver() {
-        return turnOver;
-    }
-
-    // Method to end the player's turn
-    public void endTurn() {
-        turnOver = true;
-    }
 
     /**
      * Act - do whatever the Player wants to do. This method is called whenever

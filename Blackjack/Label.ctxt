@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Label
+comment0.text=\n\ Write\ a\ description\ of\ class\ Label\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=labelText
+comment1.target=Label(java.lang.String)
+comment2.params=labelText
+comment2.target=void\ updateLabel(java.lang.String)
+comment3.params=
+comment3.target=void\ setLabelImage()
+comment4.params=
+comment4.target=void\ act()
+comment4.text=\n\ Act\ -\ do\ whatever\ the\ Label\ wants\ to\ do.\ This\ method\ is\ called\ whenever\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\n
+numComments=5

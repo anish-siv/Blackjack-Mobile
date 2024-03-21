@@ -5,24 +5,7 @@ public class User extends Player {
     
     void setup() {
         super.setup();
-        draw(true);
-    }
-    
-    // Method to handle when the user hits
-    public void hit() {
-        if (!isTurnOver()) {
-            draw(true); // Draw a card and show it
-            if (isTurnOver()) {
-                endTurn(); // End the user's turn if they bust or reach 21
-            }
-        }
-    }
-    
-    // Method to handle when the user stands
-    public void stand() {
-        if (!isTurnOver()) {
-            endTurn(); // End the user's turn
-        }
+        draw();
     }
     
     /**

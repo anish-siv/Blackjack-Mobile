@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Hit extends Button {
     public void act() {
-        if (Greenfoot.mouseClicked(this)) {
+        if (Greenfoot.mouseClicked(this) && enabled) {
             Table table = (Table) getWorld();
             table.userHits(); // Call the userHits method in Table class
         }
