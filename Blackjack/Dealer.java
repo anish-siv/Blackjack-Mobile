@@ -15,12 +15,12 @@ public class Dealer extends Player
     void completeDraw(){
         hand.showCard();
         while(hand.getValue() < 17)
-            draw(true);
+            draw();
     }
     
     void setup(){
         super.setup();
-        draw(false);
+        hand.addCard(deck.draw(false));
     }
     
     /**
