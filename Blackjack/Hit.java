@@ -6,25 +6,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Hit extends Button
-{
-    /**
-     * Act - do whatever the Hit wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act()
-    {
-        // Add your action code here.
-        Table world = (Table) getWorld();
-        
-        if ( Greenfoot.mouseClicked(this) && !world.isGameOver() )
-        {
-            getAnotherCard();
+public class Hit extends Button {
+    public void act() {
+        if (Greenfoot.mouseClicked(this)) {
+            Table table = (Table) getWorld();
+            table.userHits(); // Call the userHits method in Table class
         }
-    }
-    private void getAnotherCard()
-    {
-        Table world = (Table) getWorld();
-        world.turnNewCard(true);
     }
 }
