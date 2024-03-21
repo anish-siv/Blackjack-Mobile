@@ -14,6 +14,21 @@ public class Stand extends Button
      */
     public void act()
     {
+        // Add your action code here.
+        Table world = (Table) getWorld();
         
+        if ( Greenfoot.mouseClicked(this) && !world.isGameOver() )
+        {
+            stand();
+        }
+    }
+    
+    /**
+     * Stand at the current score, when the player hits the stand button.
+     */
+    private void stand()
+    {
+        Table world = (Table) getWorld();
+        world.switchTurn();
     }
 }
