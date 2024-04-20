@@ -35,8 +35,8 @@ public class Table extends World {
         standButton.setImage(standImage);
 
         // Resizing button images
-        hitImage.scale(200, 50);
-        standImage.scale(200, 50);
+        hitImage.scale(150, 50);
+        standImage.scale(150, 50);
 
         // Adding buttons to the world
         addObject(hitButton, 500, 200);

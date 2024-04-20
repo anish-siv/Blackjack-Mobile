@@ -37,7 +37,7 @@ public class Hand extends Actor
         
         
         for (int i = 0; i < numAces; i++) {
-            if ((value + 11) < 21) {
+            if ((value + 11) <= 21) {
                 value += 11;
             } else {
                 value += 1;

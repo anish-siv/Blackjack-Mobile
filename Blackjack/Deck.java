@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Deck extends Actor
 {
     int[] cardList = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
+    int[] useList = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     String cardName;
     int index;
     /**
@@ -21,8 +22,12 @@ public class Deck extends Actor
     }
     
     public Card draw(boolean visible) {
-        index = Greenfoot.getRandomNumber(13) + 1;
-        Card newCard = new Card(index, visible);
+        index = Greenfoot.getRandomNumber(13);
+        while (useList[index] == 4) {
+            index = Greenfoot.getRandomNumber(13);
+        }
+        useList[index] += 1;
+        Card newCard = new Card(index + 1, visible);
         return newCard;
     }
 }

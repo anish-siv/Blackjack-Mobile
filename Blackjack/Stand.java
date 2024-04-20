@@ -7,10 +7,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (a version number or a date)
  */
 public class Stand extends Button {
+    boolean pressed = false;
+    
     public void act() {
-        if (Greenfoot.mouseClicked(this) && enabled) {
+        if (Greenfoot.mouseClicked(this) || (Greenfoot.isKeyDown("down") && !pressed) && enabled) {
+            pressed = true;
             Table table = (Table) getWorld();
             table.userStands(); // Call the userStands method in Table class
+        }
+        if (!Greenfoot.isKeyDown("down")) {
+            pressed = false;
         }
     }
 }
