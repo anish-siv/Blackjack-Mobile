@@ -15,6 +15,9 @@ public class Button extends Actor
     void disable(){
         enabled = false;
     }
+    void enable(){
+        enabled = true;
+    }
     /**
      * Act - do whatever the Button wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.

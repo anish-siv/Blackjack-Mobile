@@ -10,6 +10,7 @@ public class Player extends Actor {
     Hand hand;
     int x, y;
     Deck deck;
+    int balance;
 
     Player(int x, int y, Deck deck){
         this.x = x;
@@ -31,6 +32,7 @@ public class Player extends Actor {
     void draw(){
         hand.addCard(deck.draw(true));
     }
+
 
 
     /**
