@@ -47,6 +47,9 @@ public class Hand extends Actor
     }
     
     public void clear(){
+        for (Card card: cards) {
+            getWorld().removeObject(card);
+        }
         cards.clear();
     }
     
