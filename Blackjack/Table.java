@@ -6,6 +6,7 @@ public class Table extends World {
     Dealer dealer;
     Hit hitButton;
     Stand standButton;
+    DoubleDown doubleButton;
     Label userTotalLabel;
     Label dealerTotalLabel;
     Label userBalanceLabel;
@@ -25,22 +26,29 @@ public class Table extends World {
         // Creating Hit and Stand buttons
         hitButton = new Hit();
         standButton = new Stand();
+        doubleButton = new DoubleDown();
 
         // Loading images for Hit and Stand buttons
         GreenfootImage hitImage = new GreenfootImage("hit_btn.png");
         GreenfootImage standImage = new GreenfootImage("stand_btn.png");
+        GreenfootImage doubleImage = new GreenfootImage("double_btn.png");
 
         // Setting images for buttons
         hitButton.setImage(hitImage);
         standButton.setImage(standImage);
+        doubleButton.setImage(doubleImage);
+        
 
         // Resizing button images
         hitImage.scale(150, 50);
         standImage.scale(150, 50);
+        doubleImage.scale(150, 50);
+        
 
         // Adding buttons to the world
-        addObject(hitButton, 500, 200);
-        addObject(standButton, 500, 250);
+        addObject(hitButton, 500, 150);
+        addObject(standButton, 500, 200);
+        addObject(doubleButton, 500, 250);
                 
         // Adding Result button for end of round
         resultButton = new Result();
@@ -48,7 +56,7 @@ public class Table extends World {
         addObject(resultButton, getWidth() / 2 , (getHeight() / 2) + 0);
 
         // Temporarily set round bet to 10
-        roundBet = 20;
+        roundBet = 10;
 
         // Creating deck, user, and dealer
         deck = new Deck();
@@ -102,7 +110,21 @@ public class Table extends World {
             push();
     }
     
+    public void userDoubles() {
+        roundBet *= 2;
+        user.draw();
+        int uValue = user.handValue();
+        userTotalLabel.updateLabel("Score: " + user.handValue());
+        if(uValue > 21){
+            resultButton.updateLabel("Click to try again");
+            lose();
+        }
+        else
+            userStands();
+    }
+    
     void win(){
+        disableButtons();
         resultButton.updateLabel("You Won! You earned " + roundBet + "$ \n Click to try again!");
         user.updateBalance(roundBet);
         userBalanceLabel.updateLabel("Balance: " + user.getBalance());
@@ -129,11 +151,12 @@ public class Table extends World {
     void disableButtons(){
         hitButton.disable();
         standButton.disable();
+        doubleButton.disable();
     }
     void enableButtons() {
         hitButton.enable();
         standButton.enable();
-    
+        doubleButton.enable();
     }
     
     void resetRound() {
