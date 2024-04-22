@@ -30,4 +30,10 @@ public class Deck extends Actor
         Card newCard = new Card(index + 1, visible);
         return newCard;
     }
+    
+    public void shuffle() {
+        for (int useIndex : useList) {
+            useList[useIndex] = 0;
+        }
+    }
 }

@@ -7,12 +7,14 @@ public class Table extends World {
     Hit hitButton;
     Stand standButton;
     DoubleDown doubleButton;
+    TutorialButton tutorialButton;
     Label userTotalLabel;
     Label dealerTotalLabel;
     Label userBalanceLabel;
     Label playAgainLabel;
     Result resultButton;
     int roundBet;
+    boolean doubleAvailable = false;
 
     public Table() {
         super(600, 400, 1);
@@ -48,12 +50,10 @@ public class Table extends World {
         // Adding buttons to the world
         addObject(hitButton, 500, 150);
         addObject(standButton, 500, 200);
-        addObject(doubleButton, 500, 250);
                 
         // Adding Result button for end of round
         resultButton = new Result();
         GreenfootImage resultImage = new GreenfootImage("", 24, Color.WHITE, new Color( 0, 0, 0, 0 ));
-        addObject(resultButton, getWidth() / 2 , (getHeight() / 2) + 0);
 
         // Temporarily set round bet to 10
         roundBet = 10;
@@ -69,6 +69,12 @@ public class Table extends World {
         user.setup();
         dealer.setup();
         
+        //Double Down condition
+        if (9 <= user.handValue() && user.handValue() <= 11) {
+            addObject(doubleButton, 500, 250);
+            doubleAvailable = true;
+        }
+        
         // Ensure cards never cover up labels or buttons
         setPaintOrder(Label.class, Button.class, Card.class);
     
@@ -81,10 +87,18 @@ public class Table extends World {
         addObject(new Label("Player"), 50, getHeight() - 165);
         addObject(userTotalLabel, 59, getHeight() - 140);
         addObject(userBalanceLabel, 70, getHeight() - 120);
+        
+        // Tutorial Button
+        tutorialButton = new TutorialButton();
+        addObject(tutorialButton, 540, 380);
     }
 
     // Method to handle when the player hits
     public void userHits() {
+        if (doubleAvailable) 
+            removeObject(doubleButton);
+        doubleAvailable = false;
+        
         user.draw();
         int uValue = user.handValue();
         userTotalLabel.updateLabel("Score: " + user.handValue());
@@ -121,31 +135,38 @@ public class Table extends World {
         }
         else
             userStands();
+        roundBet /= 2;
+        removeObject(doubleButton);
     }
     
     void win(){
+        addObject(resultButton, getWidth() / 2 , (getHeight() / 2) + 0);
         disableButtons();
-        resultButton.updateLabel("You Won! You earned " + roundBet + "$ \n Click to try again!");
+        resultButton.updateLabel("You Won! You earned " + roundBet + "$ \n Click here or press left to try again!");
         user.updateBalance(roundBet);
         userBalanceLabel.updateLabel("Balance: " + user.getBalance());
+        deck.shuffle();
     }
     
     void lose(){
+        addObject(resultButton, getWidth() / 2 , (getHeight() / 2) + 0);
         disableButtons();
         user.updateBalance(-roundBet);
         int balance = user.getBalance();
         if (user.getBalance() > 0) {
-            resultButton.updateLabel("You Lost! You lost " + roundBet + "$ \n Click to try again!" );
+            resultButton.updateLabel("You Lost! You lost " + roundBet + "$ \n Click here or press left to try again!" );
         } else {
             resultButton.updateLabel("You lost all your money! \n Reset to start a new game" );
             resultButton.disable();
         }
-        
         userBalanceLabel.updateLabel("Balance: " + balance);
+        deck.shuffle();
     }
     
     void push(){
-        resultButton.updateLabel("Push!... Your balance is the same \n Click to try again!");
+        addObject(resultButton, getWidth() / 2 , (getHeight() / 2) + 0);
+        resultButton.updateLabel("Push!... Your balance is the same \n Click here or press left to try again!");
+        deck.shuffle();
     }
     
     void disableButtons(){
@@ -163,16 +184,17 @@ public class Table extends World {
         if (user.getBalance() > 0) {
              //Need to get new bet
             enableButtons();
+            removeObject(resultButton);
             user.setup();
             dealer.setup();
             dealerTotalLabel.updateLabel("Score: " + dealer.handValue());
             userTotalLabel.updateLabel("Score: " + user.handValue());
+            
+            if (9 <= user.handValue() && user.handValue() <= 11) {
+            addObject(doubleButton, 500, 250);
+            doubleAvailable = true;
         }
-
-    }
-    
-    // Method to switch the turn between the user and the dealer
-    public void switchTurn() {
-        // Code to switch turns between the user and the dealer
+        }
+        deck.shuffle();
     }
 }

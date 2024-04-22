@@ -14,6 +14,7 @@ public class Result extends Button
      */
     
     String labelText;
+    boolean pressed = true;
     
     Result() {
         updateLabel("");
@@ -27,10 +28,14 @@ public class Result extends Button
     
     public void act()
     {
-        if (Greenfoot.mouseClicked(this) && enabled) {
+        if ((Greenfoot.mouseClicked(this) || (Greenfoot.isKeyDown("left") && !pressed)) && enabled) {
+            pressed = true;
             Table table = (Table) getWorld();
             table.resetRound(); // Call the userStands method in Table class
             updateLabel("");
+        }
+        if (!Greenfoot.isKeyDown("left")) {
+            pressed = false;
         }
     }
 }
