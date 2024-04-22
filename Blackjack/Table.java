@@ -128,6 +128,7 @@ public class Table extends World {
             push();
     }
     
+    // Method to handle when the player doubles down
     public void userDoubles() {
         roundBet *= 2;
         user.draw();
@@ -141,6 +142,25 @@ public class Table extends World {
             userStands();
     }
     
+    public void userIncreasesBet() {
+        int maxBet = 100; // Maximum bet allowed
+        if (roundBet < maxBet && roundBet < user.getBalance()) {
+        int previousBet = roundBet; // Store the previous bet amount
+        roundBet += 10; // Adjust this value as needed
+        user.updateBalance(- (roundBet - previousBet)); // Deduct the increased bet amount from the balance
+        userBalanceLabel.updateLabel("Balance: " + user.getBalance());
+        }
+    }
+
+    public void userDecreasesBet() {
+        int minBet = 10; // Minimum bet allowed
+        if (roundBet > minBet) {
+        int previousBet = roundBet; // Store the previous bet amount
+        roundBet -= 10; // Adjust this value as needed
+        user.updateBalance(previousBet - roundBet); // Add the decreased bet amount back to the balance
+        userBalanceLabel.updateLabel("Balance: " + user.getBalance());
+        }
+    }
     void win(){
         disableButtons();
         resultButton.updateLabel("You Won! You earned " + roundBet + "$ \n Click to try again!");
