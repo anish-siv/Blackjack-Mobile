@@ -7,6 +7,8 @@ public class Table extends World {
     Hit hitButton;
     Stand standButton;
     DoubleDown doubleButton;
+    IncreaseBet increaseButton;
+    DecreaseBet decreaseButton;
     Label userTotalLabel;
     Label dealerTotalLabel;
     Label userBalanceLabel;
@@ -27,28 +29,44 @@ public class Table extends World {
         hitButton = new Hit();
         standButton = new Stand();
         doubleButton = new DoubleDown();
+        
+        // Creating Increase/Decrease Bet buttons
+        increaseButton = new IncreaseBet();
+        decreaseButton = new DecreaseBet();
 
         // Loading images for Hit and Stand buttons
         GreenfootImage hitImage = new GreenfootImage("hit_btn.png");
         GreenfootImage standImage = new GreenfootImage("stand_btn.png");
         GreenfootImage doubleImage = new GreenfootImage("double_btn.png");
+        
+        // Loading images for Increase/Decrease Bet buttons
+        GreenfootImage plusImage = new GreenfootImage("plus_btn.png");
+        GreenfootImage minusImage = new GreenfootImage("minus_btn.png");
 
         // Setting images for buttons
         hitButton.setImage(hitImage);
         standButton.setImage(standImage);
         doubleButton.setImage(doubleImage);
+        increaseButton.setImage(plusImage);
+        decreaseButton.setImage(minusImage);
         
-
         // Resizing button images
         hitImage.scale(150, 50);
         standImage.scale(150, 50);
         doubleImage.scale(150, 50);
-        
-
+        plusImage.scale(50, 50);
+        minusImage.scale(50, 50);
+    
         // Adding buttons to the world
         addObject(hitButton, 500, 150);
         addObject(standButton, 500, 200);
         addObject(doubleButton, 500, 250);
+        addObject(increaseButton, 550, 300);
+        addObject(decreaseButton, 550, 360);
+        
+        // Labels to indicate where to Increase/Decrease Bet
+        addObject(new Label("Increase Bet"), 450, 300);
+        addObject(new Label("Decrease Bet"), 450, 360);
                 
         // Adding Result button for end of round
         resultButton = new Result();
