@@ -7,7 +7,10 @@ public class Table extends World {
     Hit hitButton;
     Stand standButton;
     DoubleDown doubleButton;
+    IncreaseBet increaseButton;
+    DecreaseBet decreaseButton;
     TutorialButton tutorialButton;
+
     Label userTotalLabel;
     Label dealerTotalLabel;
     Label userBalanceLabel;
@@ -29,27 +32,45 @@ public class Table extends World {
         hitButton = new Hit();
         standButton = new Stand();
         doubleButton = new DoubleDown();
+        
+        // Creating Increase/Decrease Bet buttons
+        increaseButton = new IncreaseBet();
+        decreaseButton = new DecreaseBet();
 
         // Loading images for Hit and Stand buttons
         GreenfootImage hitImage = new GreenfootImage("hit_btn.png");
         GreenfootImage standImage = new GreenfootImage("stand_btn.png");
         GreenfootImage doubleImage = new GreenfootImage("double_btn.png");
+        
+        // Loading images for Increase/Decrease Bet buttons
+        GreenfootImage plusImage = new GreenfootImage("plus_btn.png");
+        GreenfootImage minusImage = new GreenfootImage("minus_btn.png");
 
         // Setting images for buttons
         hitButton.setImage(hitImage);
         standButton.setImage(standImage);
         doubleButton.setImage(doubleImage);
+        increaseButton.setImage(plusImage);
+        decreaseButton.setImage(minusImage);
         
-
         // Resizing button images
         hitImage.scale(150, 50);
         standImage.scale(150, 50);
         doubleImage.scale(150, 50);
-        
-
+        plusImage.scale(50, 50);
+        minusImage.scale(50, 50);
+    
         // Adding buttons to the world
         addObject(hitButton, 500, 150);
         addObject(standButton, 500, 200);
+
+        addObject(doubleButton, 500, 250);
+        addObject(increaseButton, 550, 300);
+        addObject(decreaseButton, 550, 360);
+        
+        // Labels to indicate where to Increase/Decrease Bet
+        addObject(new Label("Increase Bet"), 450, 300);
+        addObject(new Label("Decrease Bet"), 450, 360);
                 
         // Adding Result button for end of round
         resultButton = new Result();
@@ -124,6 +145,7 @@ public class Table extends World {
             push();
     }
     
+    // Method to handle when the player doubles down
     public void userDoubles() {
         roundBet *= 2;
         user.draw();
@@ -139,6 +161,25 @@ public class Table extends World {
         removeObject(doubleButton);
     }
     
+    public void userIncreasesBet() {
+        int maxBet = 100; // Maximum bet allowed
+        if (roundBet < maxBet && roundBet < user.getBalance()) {
+        int previousBet = roundBet; // Store the previous bet amount
+        roundBet += 10; // Adjust this value as needed
+        user.updateBalance(- (roundBet - previousBet)); // Deduct the increased bet amount from the balance
+        userBalanceLabel.updateLabel("Balance: " + user.getBalance());
+        }
+    }
+
+    public void userDecreasesBet() {
+        int minBet = 10; // Minimum bet allowed
+        if (roundBet > minBet) {
+        int previousBet = roundBet; // Store the previous bet amount
+        roundBet -= 10; // Adjust this value as needed
+        user.updateBalance(previousBet - roundBet); // Add the decreased bet amount back to the balance
+        userBalanceLabel.updateLabel("Balance: " + user.getBalance());
+        }
+    }
     void win(){
         addObject(resultButton, getWidth() / 2 , (getHeight() / 2) + 0);
         disableButtons();
