@@ -10,6 +10,7 @@ public class StartScreen extends World
 {
     Start startButton;
     TutorialButton tutorialButton;
+    Setting settingButton;
     
     /**
      * Constructor for objects of class StartScreen.
@@ -28,10 +29,12 @@ public class StartScreen extends World
         setBackground(background); 
         
         startButton = new Start();
-        //GreenfootImage StartImage = new GreenfootImage("Start", 24, Color.WHITE, new Color( 0, 0, 0, 0 ));
         addObject(startButton, getWidth() / 4 , (getHeight() / 2) + 100);
         
         tutorialButton = new TutorialButton();
         addObject(tutorialButton, getWidth() * 3 / 4 , (getHeight() / 2) + 100);
+        
+        settingButton = new Setting(startButton);
+        addObject(settingButton, getWidth() / 2 , (getHeight() * 95 / 100));
     }
 }

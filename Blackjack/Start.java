@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Start extends Button
 {
-    
+    boolean difficult = false;
     String labelText;
     
     Start() {
@@ -20,11 +20,14 @@ public class Start extends Button
         setImage(new GreenfootImage( this.labelText, 36, Color.WHITE, new Color( 0, 0, 0, 0 )));    
     }
     
+    public void updateDifficulty() {
+        difficult = !difficult;
+    }
     
     public void act()
     {
         if (Greenfoot.mouseClicked(this) && enabled) {
-            Table table = new Table();
+            Table table = new Table(difficult);
             Greenfoot.setWorld(table);
         }
     }
