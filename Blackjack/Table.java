@@ -14,6 +14,7 @@ public class Table extends World {
     Label userTotalLabel;
     Label dealerTotalLabel;
     Label userBalanceLabel;
+    Label roundBetLabel;
     Label playAgainLabel;
     Result resultButton;
     int roundBet;
@@ -103,11 +104,13 @@ public class Table extends World {
         userTotalLabel = new Label("Score: " + user.handValue());
         dealerTotalLabel = new Label("Score: " + dealer.handValue());
         userBalanceLabel = new Label("Balance: " + user.getBalance());
+        roundBetLabel = new Label("Bet: " + roundBet);
         addObject(new Label("Dealer"), 50, 35);
         addObject(dealerTotalLabel, 59, 60);
         addObject(new Label("Player"), 50, getHeight() - 165);
         addObject(userTotalLabel, 59, getHeight() - 140);
         addObject(userBalanceLabel, 70, getHeight() - 120);
+        addObject(roundBetLabel, 70, getHeight() - 100);
         
         // Tutorial Button
         tutorialButton = new TutorialButton();
@@ -164,20 +167,18 @@ public class Table extends World {
     public void userIncreasesBet() {
         int maxBet = 100; // Maximum bet allowed
         if (roundBet < maxBet && roundBet < user.getBalance()) {
-        int previousBet = roundBet; // Store the previous bet amount
-        roundBet += 10; // Adjust this value as needed
-        user.updateBalance(- (roundBet - previousBet)); // Deduct the increased bet amount from the balance
-        userBalanceLabel.updateLabel("Balance: " + user.getBalance());
+            int previousBet = roundBet; // Store the previous bet amount
+            roundBet += 10; // Adjust this value as needed
+            roundBetLabel.updateLabel("Bet: " + roundBet);
         }
     }
 
     public void userDecreasesBet() {
         int minBet = 10; // Minimum bet allowed
         if (roundBet > minBet) {
-        int previousBet = roundBet; // Store the previous bet amount
-        roundBet -= 10; // Adjust this value as needed
-        user.updateBalance(previousBet - roundBet); // Add the decreased bet amount back to the balance
-        userBalanceLabel.updateLabel("Balance: " + user.getBalance());
+            int previousBet = roundBet; // Store the previous bet amount
+            roundBet -= 10; // Adjust this value as needed
+            roundBetLabel.updateLabel("Bet: " + roundBet);        
         }
     }
     void win(){
