@@ -19,8 +19,9 @@ public class Table extends World {
     Result resultButton;
     int roundBet;
     boolean doubleAvailable = false;
+    boolean difficulty = false;
 
-    public Table() {
+    public Table(boolean hardGame) {
         super(600, 400, 1);
 
         // Set background color
@@ -65,7 +66,7 @@ public class Table extends World {
         addObject(hitButton, 500, 150);
         addObject(standButton, 500, 200);
 
-        addObject(doubleButton, 500, 250);
+        
         addObject(increaseButton, 550, 300);
         addObject(decreaseButton, 550, 360);
         
@@ -92,9 +93,12 @@ public class Table extends World {
         dealer.setup();
         
         //Double Down condition
-        if (9 <= user.handValue() && user.handValue() <= 11) {
-            addObject(doubleButton, 500, 250);
-            doubleAvailable = true;
+        difficulty = hardGame;
+        if (difficulty) {
+            if (9 <= user.handValue() && user.handValue() <= 11) {
+                addObject(doubleButton, 500, 250);
+                doubleAvailable = true;
+            }
         }
         
         // Ensure cards never cover up labels or buttons
@@ -137,6 +141,7 @@ public class Table extends World {
     // Method to handle when the player stands
     public void userStands() {
         disableButtons();
+        removeObject(doubleButton);
         dealer.completeDraw();
         dealerTotalLabel.updateLabel("Score: " + dealer.handValue());
 
@@ -232,10 +237,12 @@ public class Table extends World {
             dealerTotalLabel.updateLabel("Score: " + dealer.handValue());
             userTotalLabel.updateLabel("Score: " + user.handValue());
             
-            if (9 <= user.handValue() && user.handValue() <= 11) {
-            addObject(doubleButton, 500, 250);
-            doubleAvailable = true;
-        }
+            if (difficulty) {
+                if (9 <= user.handValue() && user.handValue() <= 11) {
+                    addObject(doubleButton, 500, 250);
+                    doubleAvailable = true;
+                }
+            }
         }
         deck.shuffle();
     }
